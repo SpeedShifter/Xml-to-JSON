@@ -94,12 +94,24 @@
             }
             //Extract root node
             root = this.getRoot(xdoc);
+            var nodename = this.getNodeName(root);
             //Create first root node
-            out[root.nodeName] = {};
+            out[nodename] = {};
             //Start assembling the JSON tree (recursive)
-            this.process(root, out[root.nodeName]);
+            this.process(root, out[nodename]);
             //Parse JSON string and attempt to return it as an Object
             return out;
+        },
+        /**
+         * Get nodeName without prefix (namespace)
+         * @param  {XMLNode} node Any XML node
+         * @return {String} node name
+         * */
+        getNodeName: function(node) {
+          if (node.prefix) {
+            return node.nodeName.replace(node.prefix+':', '');
+          }
+          return node.nodeName;
         },
         /**
          * Recursive xmlNode processor. It determines the node type and processes it accordingly.
@@ -124,7 +136,7 @@
                         buff.Text = buff.Text ? buff.Text + value : value;
                         break;
                     case NODE_TYPES.Element:
-                        name = child.nodeName;
+                        name = this.getNodeName(child);
                         tmp = {};
                         //Node name already exists in the buffer and it's a NodeSet
                         if(name in buff) {

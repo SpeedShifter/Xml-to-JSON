@@ -107,14 +107,17 @@
             //Parse JSON string and attempt to return it as an Object
             return out;
         },
-
+        /**
+         * Get nodeName without prefix (namespace)
+         * @param  {XMLNode} node Any XML node
+         * @return {String} node name
+         * */
         getNodeName: function(node) {
           if (node.prefix) {
             return node.nodeName.replace(node.prefix+':', '');
           }
           return node.nodeName;
         },
-
         /**
          * Recursive xmlNode processor. It determines the node type and processes it accordingly.
          * @param  {XMLNode} node Any XML node
