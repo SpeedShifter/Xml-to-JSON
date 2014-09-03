@@ -1,8 +1,8 @@
 {
-  "name": "Xml-to-JSON",
+  "name": "xml-to-json",
   "version": "0.1.0",
   "author": "Sam Tsvilik",
-  "description": "Xml-to-JSON project",
+  "description": "xml-to-json project",
   "homepage": "https://github.com/SpeedShifter/Xml-to-JSON",
   "keywords": [],
   "contributors": [

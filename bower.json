@@ -1,5 +1,5 @@
 {
-  "name": "Xml-to-JSON",
+  "name": "xml-to-json",
   "version": "0.1.0",
   "main": [
     "xml.js",
