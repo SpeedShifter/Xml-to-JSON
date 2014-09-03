@@ -1,0 +1,31 @@
+{
+  "name": "Xml-to-JSON",
+  "version": "0.1.0",
+  "author": "Sam Tsvilik",
+  "description": "Xml-to-JSON project",
+  "homepage": "https://github.com/SpeedShifter/Xml-to-JSON",
+  "keywords": [],
+  "contributors": [
+    {
+      "name": "Sam Tsvilik"
+    },
+    {
+      "name": "Stas Yermakov",
+      "email": "speeedshifter@gmail.com"
+    }
+  ],
+  "bugs": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SpeedShifter/Xml-to-JSON.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.4",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "^0.3.1"
+  },
+  "bundledDependencies": [],
+  "license": ""
+}
