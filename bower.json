@@ -1,9 +1,11 @@
 {
   "name": "xml-to-json",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": [
     "xml.js",
     "xml.min.js",
+    "json2xml.js",
+    "json2xml.min.js",
     "jquery.xml.js",
     "jquery.xml.min.js"
   ],
