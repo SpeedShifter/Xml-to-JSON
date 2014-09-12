@@ -30,7 +30,7 @@
           }
         }
         else { // added special-character transform, but this needs to be better handled [micmath]
-          xml += ind + "<" + name + ">" + makeSafe(v.toString()) +  "</" + name + ">\n";
+          xml += ind + "<" + name + ">" + makeSafe((v && v.toString && v.toString()) || "") +  "</" + name + ">\n";
         }
         return xml;
       },
