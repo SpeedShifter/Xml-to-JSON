@@ -23,10 +23,19 @@
  * Node siblings with the same name will be automatically converted into arrays, else if node is singular it will just be an Object
  */
 
-(function (window, undef) {
+;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.xml = factory();
+  }
+}(this, function() {
   /** @lends xml */
-    //Trim polyfill (thanks gist: 1035982)
-    ''.trim || (String.prototype.trim = function () {
+
+  //Trim polyfill (thanks gist: 1035982)
+  ''.trim || (String.prototype.trim = function() {
     return this.replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
   });
 
@@ -41,7 +50,7 @@
       Root: 9,
       Fragment: 11
     },
-    XMLConverter, module;
+    XMLConverter;
 
   /**
    * Parses XML string and returns an XMLDocument object
@@ -78,7 +87,8 @@
   }
 
   function keys(collection) {
-    var c = 0, i;
+    var c = 0,
+      i;
     if (collection) {
       for (i in collection) {
         c++;
@@ -94,20 +104,20 @@
 
   XMLConverter = {
     isUnsafe: FALSE,
-    isXML: function (o) {
-      return(typeof(o) === "object" && o.nodeType !== undef);
+    isXML: function(o) {
+      return (typeof(o) === "object" && o.nodeType !== undefined);
     },
-    getRoot: function (doc) {
-      return(doc.nodeType === NODE_TYPES.Root) ? doc.documentElement : (doc.nodeType === NODE_TYPES.Fragment) ? doc.firstChild : doc;
+    getRoot: function(doc) {
+      return (doc.nodeType === NODE_TYPES.Root) ? doc.documentElement : (doc.nodeType === NODE_TYPES.Fragment) ? doc.firstChild : doc;
     },
     /**
      * Begins the conversion process. Will automatically convert XML string into XMLDocument
      * @param  {String|XMLDocument|XMLNode|XMLElement} xml XML you want to convert to JSON
      * @return {JSON} JSON object representing the XML data tree
      */
-    convert: function (xml) {
+    convert: function(xml) {
       var out = {},
-        xdoc = typeof(xml) === "string" ? parseXMLString(xml) : this.isXML(xml) ? xml : undef,
+        xdoc = typeof(xml) === "string" ? parseXMLString(xml) : this.isXML(xml) ? xml : undefined,
         root;
       if (!xdoc) {
         throw new Error("Unable to parse XML");
@@ -132,7 +142,7 @@
      * @param  {XMLNode} node Any XML node
      * @return {String} node name
      * */
-    getNodeName: function (node) {
+    getNodeName: function(node) {
       if (node.prefix) {
         return node.nodeName.replace(node.prefix + ':', '');
       }
@@ -143,7 +153,7 @@
      * @param  {XMLNode} node Any XML node
      * @param  {Object} buff Buffer object which will contain the JSON equivalent properties
      */
-    process: function (node, buff) {
+    process: function(node, buff) {
       var child, attr, name, att_name, value, i, j, tmp, iMax, jMax, data;
       if (node.hasChildNodes()) {
         iMax = node.childNodes.length;
@@ -201,18 +211,16 @@
     }
   };
 
-  module = {
+  return {
     /**
      * Public API to convert XML to JSON
      * @param  {String | XMLDocument} xml Any XML type
      * @param {Boolean} unsafe Allows unsafe processing that does not prefixes attributes with '@' character. It is considered unsafe bacause attribute names may collide with node names.
      * @return {JSON}     JSON object
      */
-    xmlToJSON: function (xml, unsafe) {
-      XMLConverter.isUnsafe = (unsafe !== undef) ? unsafe : FALSE;
+    xmlToJSON: function(xml, unsafe) {
+      XMLConverter.isUnsafe = (unsafe !== undefined) ? unsafe : FALSE;
       return XMLConverter.convert(xml);
     }
   };
-  //Expose public Api
-  window.xml = window.xml || module;
-})(window);
+}));
