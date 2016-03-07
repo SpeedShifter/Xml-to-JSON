@@ -26,7 +26,7 @@
 ;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
-  } else if (typeof exports === 'object') {
+  } else if (typeof module === 'object' && module.exports) {
     module.exports = factory();
   } else {
     root.xml = factory();
@@ -63,8 +63,13 @@
       out = NULL,
       isParsed = TRUE;
     try {
-      xmlDoc = ("DOMParser" in window) ? new DOMParser() : new ActiveXObject("MSXML2.DOMDocument");
-      xmlDoc.async = FALSE;
+      if (typeof module === 'object' && module.exports) {
+        var DOMParser = require('xmldom').DOMParser;
+        xmlDoc = new DOMParser();
+      } else {
+        xmlDoc = ("DOMParser" in window) ? new DOMParser() : new ActiveXObject("MSXML2.DOMDocument");
+        xmlDoc.async = FALSE;
+      }
     } catch (e) {
       throw new Error("XML Parser could not be instantiated");
     }

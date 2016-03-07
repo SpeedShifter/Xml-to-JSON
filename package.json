@@ -1,9 +1,9 @@
 {
   "name": "xml-to-json",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "author": "Sam Tsvilik",
   "description": "xml-to-json project",
-  "homepage": "https://github.com/SpeedShifter/Xml-to-JSON",
+  "homepage": "https://github.com/IngloriousCoderz/Xml-to-JSON",
   "keywords": [],
   "contributors": [
     {
@@ -12,6 +12,10 @@
     {
       "name": "Stas Yermakov",
       "email": "speeedshifter@gmail.com"
+    },
+    {
+      "name": "Matteo Antony Mistretta",
+      "email": "antony.mistretta@gmail.com"
     }
   ],
   "bugs": "",
@@ -19,7 +23,9 @@
     "type": "git",
     "url": "https://github.com/SpeedShifter/Xml-to-JSON.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "xmldom": "^0.1.22"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.4",
