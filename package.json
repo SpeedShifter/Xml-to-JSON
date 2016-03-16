@@ -4,6 +4,9 @@
   "author": "Sam Tsvilik",
   "description": "xml-to-json project",
   "homepage": "https://github.com/IngloriousCoderz/Xml-to-JSON",
+  "scripts": {
+    "start": "grunt"
+  },
   "keywords": [],
   "contributors": [
     {

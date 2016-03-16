@@ -64,10 +64,9 @@
       isParsed = TRUE;
     try {
       if (typeof module === 'object' && module.exports) {
-        var DOMParser = require('xmldom').DOMParser;
-        xmlDoc = new DOMParser();
+        xmlDoc = new require('xmldom').DOMParser();
       } else {
-        xmlDoc = ("DOMParser" in window) ? new DOMParser() : new ActiveXObject("MSXML2.DOMDocument");
+        xmlDoc = "DOMParser" in window ? new DOMParser() : new ActiveXObject("MSXML2.DOMDocument");
         xmlDoc.async = FALSE;
       }
     } catch (e) {
